@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golf Helper - Your Personal Caddy</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>⛳ Golf Helper</h1>
+            <p class="subtitle">Your Personal Caddy</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>Shot Information</h2>
+                <form id="golfForm">
+                    <div class="form-group">
+                        <label for="distance">Distance from Hole (yards)</label>
+                        <input type="number" id="distance" name="distance" min="1" max="500"
+                            placeholder="Enter distance" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="imageUpload">Upload Picture of Target Area</label>
+                        <input type="file" id="imageUpload" name="image" accept="image/*" capture="environment">
+                        <div id="imagePreview" class="image-preview"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" id="getLocationBtn" class="btn btn-secondary">
+                            📍 Get My Location
+                        </button>
+                        <div id="locationStatus" class="status"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" id="getDirectionBtn" class="btn btn-secondary">
+                            🧭 Get Direction I'm Facing
+                        </button>
+                        <div id="directionStatus" class="status"></div>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="btn btn-primary" disabled>
+                        Get Golf Advice
+                    </button>
+                </form>
+            </div>
+
+            <div class="card" id="weatherCard" style="display: none;">
+                <h2>Current Conditions</h2>
+                <div id="weatherInfo"></div>
+            </div>
+
+            <div class="card" id="adviceCard" style="display: none;">
+                <h2>Golf Advice</h2>
+                <div id="adviceContent"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Made with ❤️ for Dad</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

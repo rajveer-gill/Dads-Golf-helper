@@ -1,0 +1,23 @@
+# API Keys (if you create a separate config file)
+config.js
+.env
+
+# Dependencies
+node_modules/
+.npm-cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+server.log
+
