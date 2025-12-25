@@ -41,6 +41,17 @@ app.get('/health', (req, res) => {
     res.json({ status: 'ok' });
 });
 
+// Explicit routes for static files
+app.get('/style.css', (req, res) => {
+    res.setHeader('Content-Type', 'text/css');
+    res.sendFile(path.join(__dirname, 'style.css'));
+});
+
+app.get('/script.js', (req, res) => {
+    res.setHeader('Content-Type', 'application/javascript');
+    res.sendFile(path.join(__dirname, 'script.js'));
+});
+
 // Weather API proxy endpoint
 app.get('/api/weather', async (req, res) => {
     const { lat, lon } = req.query;
