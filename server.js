@@ -23,6 +23,19 @@ const PORT = process.env.PORT || 8000;
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 
+// Serve static files FIRST (before routes)
+app.use(express.static(__dirname, {
+    maxAge: '1d',
+    etag: true,
+    setHeaders: (res, path) => {
+        if (path.endsWith('.css')) {
+            res.setHeader('Content-Type', 'text/css');
+        } else if (path.endsWith('.js')) {
+            res.setHeader('Content-Type', 'application/javascript');
+        }
+    }
+}));
+
 // Health check endpoint
 app.get('/health', (req, res) => {
     res.json({ status: 'ok' });
@@ -166,12 +179,6 @@ function getDirectionName(degrees) {
     const index = Math.round(degrees / 45) % 8;
     return directions[index];
 }
-
-// Serve static files explicitly
-app.use(express.static(__dirname, {
-    maxAge: '1d',
-    etag: true
-}));
 
 // Serve the main page
 app.get('/', (req, res) => {
