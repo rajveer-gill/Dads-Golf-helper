@@ -173,9 +173,14 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Start server
-app.listen(PORT, () => {
-    console.log(`⛳ Golf Helper server running on http://localhost:${PORT}`);
-    console.log(`📝 Make sure your .env file has your API keys configured!`);
-});
+// Start server (only if not in Vercel/serverless environment)
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`⛳ Golf Helper server running on http://localhost:${PORT}`);
+        console.log(`📝 Make sure your .env file has your API keys configured!`);
+    });
+}
+
+// Export for Vercel/serverless
+module.exports = app;
 
